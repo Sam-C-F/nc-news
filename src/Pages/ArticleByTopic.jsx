@@ -5,7 +5,7 @@ import { getArticles } from "../utils/api";
 
 export default function ArticleByTopic() {
   const [articles, setArticles] = useState([]);
-  const [isloading, setIsLoading] = useState(false);
+  const [isloading, setIsLoading] = useState(true);
 
   const { topic } = useParams();
 

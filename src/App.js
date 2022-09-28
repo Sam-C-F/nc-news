@@ -12,6 +12,7 @@ function App() {
       <Header />
       <Navbar />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/:topic" element={<ArticleByTopic />} />
         <Route path="/topics" element={<AllTopics />} />

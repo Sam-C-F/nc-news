@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import "../App.css";
-
+import { useParams } from "react-router-dom";
 import ArticleCard from "../Components/ArticleCard";
 import { getArticles } from "../utils/api";
 
-export default function Home() {
+export default function ArticleByTopic() {
   const [articles, setArticles] = useState([]);
   const [isloading, setIsLoading] = useState(false);
 
+  const { topic } = useParams();
+
   useEffect(() => {
     setIsLoading(true);
-    getArticles().then(({ articles }) => {
+    getArticles(topic).then(({ articles }) => {
       setArticles(articles);
       setIsLoading(false);
     });
-  }, []);
+  }, [topic]);
 
   if (isloading) {
     return <p>Loading</p>;

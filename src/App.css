@@ -3,3 +3,21 @@
   background: #daf0ee;
   color: #3b413c;
 }
+
+.all__articles {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: 0;
+  align-items: center;
+}
+
+.all__topics {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: 0;
+  align-items: center;
+}

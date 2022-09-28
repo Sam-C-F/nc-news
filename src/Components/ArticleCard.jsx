@@ -11,7 +11,8 @@ export default function ArticleCard({ articles }) {
               <h2>{article.title}</h2>
               <br />
               <p>
-                {article.author} -- {article.topic} -- {article.votes}
+                {article.author} -- {article.topic} -- {article.votes} votes --{" "}
+                {article.comment_count} comments
               </p>
             </li>
           );

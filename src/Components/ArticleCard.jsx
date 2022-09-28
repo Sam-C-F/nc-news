@@ -5,7 +5,6 @@ export default function ArticleCard({ articles }) {
     <section>
       <ul className="all__articles">
         {articles.map((article) => {
-          console.log(article);
           return (
             <li key={article.article_id} className="single__article">
               <h2>{article.title}</h2>
@@ -21,5 +20,3 @@ export default function ArticleCard({ articles }) {
     </section>
   );
 }
-
-//title author votes topic

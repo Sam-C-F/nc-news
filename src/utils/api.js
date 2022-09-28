@@ -19,3 +19,9 @@ export const getArticles = (topic, sort_by, order_by, limit, page) => {
       return data;
     });
 };
+
+export const getTopics = () => {
+  return newsApi.get("/topics").then(({ data }) => {
+    return data;
+  });
+};

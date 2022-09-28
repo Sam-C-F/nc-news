@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../App.css";
 
 import ArticleCard from "../Components/ArticleCard";
 import { getArticles } from "../utils/api";
@@ -20,7 +21,11 @@ export default function Home() {
 
   return (
     <section>
-      <ArticleCard articles={articles} />
+      <ul className="all__articles">
+        {articles.map((article) => {
+          return <ArticleCard article={article} key={article.article_id} />;
+        })}
+      </ul>
     </section>
   );
 }

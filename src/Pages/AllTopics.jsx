@@ -19,7 +19,11 @@ export default function AllTopics() {
 
   return (
     <section>
-      <TopicCard topics={topics} />
+      <ul className="all__topics">
+        {topics.map((topic) => {
+          return <TopicCard topic={topic} key={topic.slug} />;
+        })}
+      </ul>
     </section>
   );
 }

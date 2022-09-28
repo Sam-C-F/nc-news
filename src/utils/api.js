@@ -8,11 +8,11 @@ export const getArticles = (topic, sort_by, order_by, limit, page) => {
   return newsApi
     .get(`/articles`, {
       params: {
-        topic: topic,
-        sort_by: sort_by,
-        order_by: order_by,
-        limit: limit,
-        page: page,
+        topic,
+        sort_by,
+        order_by,
+        limit,
+        page,
       },
     })
     .then(({ data }) => {

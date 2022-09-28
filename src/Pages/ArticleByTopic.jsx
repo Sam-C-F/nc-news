@@ -22,7 +22,11 @@ export default function ArticleByTopic() {
 
   return (
     <section>
-      <ArticleCard articles={articles} />
+      <ul className="all__articles">
+        {articles.map((article) => {
+          return <ArticleCard article={article} key={article.article_id} />;
+        })}
+      </ul>
     </section>
   );
 }

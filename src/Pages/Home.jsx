@@ -6,9 +6,10 @@ import { getArticles } from "../utils/api";
 
 export default function Home() {
   const [articles, setArticles] = useState([]);
-  const [isloading, setIsLoading] = useState(true);
+  const [isloading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getArticles().then(({ articles }) => {
       setArticles(articles);
       setIsLoading(false);

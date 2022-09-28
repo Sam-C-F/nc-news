@@ -4,9 +4,10 @@ import { getTopics } from "../utils/api";
 
 export default function AllTopics() {
   const [topics, setTopics] = useState({});
-  const [isloading, setIsLoading] = useState(true);
+  const [isloading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getTopics().then(({ topics }) => {
       setTopics(topics);
       setIsLoading(false);

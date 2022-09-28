@@ -5,11 +5,12 @@ import { getArticles } from "../utils/api";
 
 export default function ArticleByTopic() {
   const [articles, setArticles] = useState([]);
-  const [isloading, setIsLoading] = useState(true);
+  const [isloading, setIsLoading] = useState(false);
 
   const { topic } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     getArticles(topic).then(({ articles }) => {
       setArticles(articles);
       setIsLoading(false);

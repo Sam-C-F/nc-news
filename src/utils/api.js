@@ -39,6 +39,18 @@ export const getCommentsForArticle = async (article_id) => {
   }
 };
 
+export const postCommentsForArticle = async (article_id, reqBody) => {
+  try {
+    const { data } = await newsApi.post(
+      `/articles/${article_id}/comments`,
+      reqBody
+    );
+    return data;
+  } catch (err) {
+    return err;
+  }
+};
+
 export const patchArticleVotes = async (article_id, reqBody) => {
   try {
     const { data } = await newsApi.patch(`/articles/${article_id}`, reqBody);

@@ -24,7 +24,7 @@ export default function AddComment({ setComments, article_id }) {
         setTimeout(() => {
           setIsError("");
           setNewComment({ username: "", body: "" });
-        }, 2000);
+        }, 1000);
       });
   };
 

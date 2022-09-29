@@ -1,6 +1,6 @@
 import "./CommentCard.css";
 
-export default function ({ comment }) {
+export default function CommentCard({ comment }) {
   const dateStamp = (comment) => {
     const date = comment.created_at.slice(0, 10);
     return date.split("-").reverse().join("-");

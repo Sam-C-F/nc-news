@@ -43,11 +43,6 @@ export default function ArticleById() {
     return <p>Loading</p>;
   }
 
-  const dateStamp = (article) => {
-    const date = article.created_at.slice(0, 10);
-    return date.split("-").reverse().join("-");
-  };
-
   return isError ? (
     <h1>{isError}</h1>
   ) : (
@@ -55,18 +50,20 @@ export default function ArticleById() {
       <div className="single__article">
         <section className="article__header">
           <h2>{article.title}</h2>
-          <p>{dateStamp(article)}</p>
+          <p>
+            {article.created_at.slice(0, 10).split("-").reverse().join("-")}
+          </p>
           <h3>
             by {article.author} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             &nbsp;Topic:&nbsp;{article.topic}
           </h3>
-          <hr />
         </section>
         <section className="article__body">
           <article>{article.body}</article>
           <br />
           {<ArticleVotes article={article} />}
         </section>
+        <hr />
         <ul className="all__comments">
           {comments.map((comment) => {
             return <CommentCard comment={comment} key={comment.comment_id} />;

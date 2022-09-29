@@ -1,33 +1,36 @@
 import { useState } from "react";
-import { getUsers, postCommentsForArticle } from "../utils/api";
+import { postCommentsForArticle } from "../utils/api";
 
 export default function AddComment({ setComments, article_id }) {
   const [newComment, setNewComment] = useState({ username: "", body: "" });
   const [isError, setIsError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleOnSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      await getUsers().then(({ users }) => {
-        const userNames = users.map((user) => {
-          return user.username;
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    postCommentsForArticle(article_id, newComment)
+      .then(({ comment }) => {
+        setComments((currentComments) => {
+          return [comment, ...currentComments];
         });
-        if (!userNames.includes(newComment.username)) {
-          return setIsError(<p>Please enter a valid username</p>);
-        } else {
-          setComments((currentComments) => {
-            const optimisticComment = { ...newComment, comment_id: Date.now() };
-            return [optimisticComment, ...currentComments];
-          });
-        }
-      });
-      await postCommentsForArticle(article_id, newComment).then((data) => {
         setNewComment({ username: "", body: "" });
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+        setIsError(err.response.data.msg);
+        setTimeout(() => {
+          setIsError("");
+          setNewComment({ username: "", body: "" });
+        }, 2000);
       });
-    } catch (err) {
-      setIsError(err.response.data.msg);
-    }
   };
+
+  if (isLoading) {
+    return <p>Loading</p>;
+  }
 
   const handleOnChange = (e) => {
     setNewComment((previousObject) => {

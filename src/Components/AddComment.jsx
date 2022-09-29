@@ -14,11 +14,12 @@ export default function AddComment({ setComments, article_id }) {
         });
         if (!userNames.includes(newComment.username)) {
           return setIsError(<p>Please enter a valid username</p>);
+        } else {
+          setComments((currentComments) => {
+            const optimisticComment = { ...newComment, comment_id: Date.now() };
+            return [optimisticComment, ...currentComments];
+          });
         }
-      });
-      setComments((currentComments) => {
-        const optimisticComment = { ...newComment, comment_id: Date.now() };
-        return [optimisticComment, ...currentComments];
       });
       await postCommentsForArticle(article_id, newComment).then((data) => {
         setNewComment({ username: "", body: "" });

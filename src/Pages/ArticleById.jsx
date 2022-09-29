@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import AddComment from "../Components/AddComment";
 import ArticleVotes from "../Components/ArticleVotes";
 import CommentCard from "../Components/CommentCard";
 import { getArticleById, getCommentsForArticle } from "../utils/api";
@@ -17,7 +18,15 @@ export default function ArticleById() {
     setIsLoading(true);
     getArticleById(article_id)
       .then(({ articles }) => {
-        setArticle(articles);
+        const articleToRender = {
+          ...articles,
+          created_at: articles.created_at
+            .slice(0, 10)
+            .split("-")
+            .reverse()
+            .join("-"),
+        };
+        setArticle(articleToRender);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -30,7 +39,17 @@ export default function ArticleById() {
     setIsLoading(true);
     getCommentsForArticle(article_id)
       .then(({ comments }) => {
-        setComments(comments);
+        const commentsToRender = [...comments].map((comment) => {
+          return {
+            ...comment,
+            created_at: comment.created_at
+              .slice(0, 10)
+              .split("-")
+              .reverse()
+              .join("-"),
+          };
+        });
+        setComments(commentsToRender);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -50,9 +69,7 @@ export default function ArticleById() {
       <div className="single__article">
         <section className="article__header">
           <h2>{article.title}</h2>
-          <p>
-            {article.created_at.slice(0, 10).split("-").reverse().join("-")}
-          </p>
+          <p>{article.created_at}</p>
           <h3>
             by {article.author} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             &nbsp;Topic:&nbsp;{article.topic}
@@ -63,6 +80,9 @@ export default function ArticleById() {
           <br />
           {<ArticleVotes article={article} />}
         </section>
+        <br />
+        <AddComment setComments={setComments} article_id={article_id} />
+        <br />
         <hr />
         <ul className="all__comments">
           {comments.map((comment) => {

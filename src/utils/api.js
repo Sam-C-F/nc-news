@@ -22,6 +22,11 @@ export const getArticleById = async (article_id) => {
   return data;
 };
 
+export const patchArticleVotes = async (article_id, reqBody) => {
+  const { data } = await newsApi.patch(`/articles/${article_id}`, reqBody);
+  return data;
+};
+
 export const getTopics = async () => {
   const { data } = await newsApi.get("/topics");
   return data;

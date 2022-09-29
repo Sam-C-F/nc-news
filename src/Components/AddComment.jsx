@@ -1,21 +1,31 @@
 import { useState } from "react";
-import { postCommentsForArticle } from "../utils/api";
+import { getUsers, postCommentsForArticle } from "../utils/api";
 
 export default function AddComment({ setComments, article_id }) {
   const [newComment, setNewComment] = useState({ username: "", body: "" });
   const [isError, setIsError] = useState("");
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    setComments((currentComments) => {
-      const optimisticComment = { ...newComment, comment_id: Date.now() };
-      return [optimisticComment, ...currentComments];
-    });
-    postCommentsForArticle(article_id, newComment)
-      .then((data) => {})
-      .catch((err) => {
-        setIsError(err.response.data.msg);
+  const handleOnSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      await getUsers().then(({ users }) => {
+        const userNames = users.map((user) => {
+          return user.username;
+        });
+        if (!userNames.includes(newComment.username)) {
+          return setIsError(<p>Please enter a valid username</p>);
+        }
       });
+      setComments((currentComments) => {
+        const optimisticComment = { ...newComment, comment_id: Date.now() };
+        return [optimisticComment, ...currentComments];
+      });
+      await postCommentsForArticle(article_id, newComment).then((data) => {
+        setNewComment({ username: "", body: "" });
+      });
+    } catch (err) {
+      setIsError(err.response.data.msg);
+    }
   };
 
   const handleOnChange = (e) => {

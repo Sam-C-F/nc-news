@@ -68,3 +68,12 @@ export const getTopics = async () => {
     return err;
   }
 };
+
+export const getUsers = async () => {
+  try {
+    const { data } = await newsApi.get(`/users`);
+    return data;
+  } catch (err) {
+    return err;
+  }
+};

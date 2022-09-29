@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ArticleVotes from "../Components/ArticleVotes";
 import { getArticleById } from "../utils/api";
 import "./ArticleById.css";
 
 export default function ArticleById() {
   const [article, setArticle] = useState({});
-  const [isloading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState("");
 
   const { article_id } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getArticleById(article_id).then(({ articles }) => {
-      setArticle(articles);
-      setIsLoading(false);
-    });
+    getArticleById(article_id)
+      .then(({ articles }) => {
+        setArticle(articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(err.response.data.msg);
+        setIsLoading(false);
+      });
   }, [article_id]);
 
-  if (isloading) {
+  if (isLoading) {
     return <p>Loading</p>;
   }
 
@@ -26,7 +33,9 @@ export default function ArticleById() {
     return date.split("-").reverse().join("-");
   };
 
-  return (
+  return isError ? (
+    <h1>{isError}</h1>
+  ) : (
     <main className="main">
       <div className="single__article">
         <section className="article__header">
@@ -40,9 +49,7 @@ export default function ArticleById() {
         <section className="article__body">
           <article>{article.body}</article>
           <br />
-          <button>
-            <p>❤&nbsp;{article.votes}&nbsp;❤</p>
-          </button>
+          {<ArticleVotes article={article} />}
         </section>
       </div>
     </main>

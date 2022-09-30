@@ -33,7 +33,6 @@ export default function AddArticle() {
     setIsLoading(true);
     postArticle(newArticle)
       .then(({ article }) => {
-        console.log(article);
         setNewArticle({
           author: loggedInUser.username,
           title: "",
@@ -59,7 +58,6 @@ export default function AddArticle() {
       });
   };
 
-  console.log(newArticle);
   if (isLoading) {
     return <p>Loading</p>;
   }

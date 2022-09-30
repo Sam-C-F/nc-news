@@ -74,8 +74,12 @@ export default function AddArticle() {
     <h1>{isError}</h1>
   ) : (
     <section>
+      <p>Either</p>
+      <Link to="/topics/add" className="add__new__topic">
+        <p>Add New Topic</p>
+      </Link>
+      <p className="add__new__topic">or</p>
       <form onSubmit={(e) => handleOnSubmit(e)}>
-        <br />
         <label htmlFor="topic">Topic: </label>
         <select
           id="topic"
@@ -98,9 +102,6 @@ export default function AddArticle() {
             );
           })}
         </select>
-        <Link to="/topics/add">
-          <p>Add New Topic</p>
-        </Link>
         <br />
         <br />
         <label htmlFor="title">Title: </label>

@@ -6,6 +6,7 @@ import AllTopics from "./Pages/AllTopics";
 import AllUsers from "./Pages/AllUsers";
 import ArticleById from "./Pages/ArticleById";
 import ArticleByTopic from "./Pages/ArticleByTopic";
+import ErrorHandling from "./Pages/ErrorHandlind";
 import Home from "./Pages/Home";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/articles/:article_id" element={<ArticleById />} />
         <Route path="/topics" element={<AllTopics />} />
         <Route path="/users" element={<AllUsers />} />
+        <Route path="/*" element={<ErrorHandling />} />
       </Routes>
     </div>
   );

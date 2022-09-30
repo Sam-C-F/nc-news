@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/User";
 import { deleteComment } from "../utils/api";
 import "./CommentCard.css";

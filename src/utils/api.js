@@ -47,6 +47,11 @@ export const patchArticleVotes = async (article_id, reqBody) => {
   return data;
 };
 
+export const removeArticle = async (article_id) => {
+  const { data } = await newsApi.delete(`/articles/${article_id}`);
+  return data;
+};
+
 export const getTopics = async () => {
   const { data } = await newsApi.get("/topics");
   return data;

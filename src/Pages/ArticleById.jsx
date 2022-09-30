@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import AddComment from "../Components/AddComment";
 import ArticleVotes from "../Components/ArticleVotes";
 import CommentCard from "../Components/CommentCard";
+import DeleteArticle from "../Components/DeleteArticle";
+
 import { getArticleById, getCommentsForArticle } from "../utils/api";
 import "./ArticleById.css";
 
@@ -11,6 +13,7 @@ export default function ArticleById() {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState("");
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const { article_id } = useParams();
 
@@ -79,7 +82,9 @@ export default function ArticleById() {
           <article>{article.body}</article>
           <br />
           {<ArticleVotes article={article} />}
+          <br />
         </section>
+        <DeleteArticle article={article} />
         <br />
         <AddComment setComments={setComments} article_id={article_id} />
         <br />

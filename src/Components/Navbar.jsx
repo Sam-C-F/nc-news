@@ -7,6 +7,8 @@ export default function Navbar() {
       <Link to="/home">Home</Link>
       &nbsp; &nbsp; &nbsp;
       <Link to="/topics">Topics</Link>
+      &nbsp; &nbsp; &nbsp;
+      <Link to="/users">Users</Link>
     </section>
   );
 }

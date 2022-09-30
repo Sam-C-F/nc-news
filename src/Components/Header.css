@@ -1,8 +1,15 @@
 .header {
   background: #94d1be;
-  padding: 3rem;
+  padding: 2rem;
 }
 
 .header h1 {
   font-size: 3rem;
+}
+
+.profile__image {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }

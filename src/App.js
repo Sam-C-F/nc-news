@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Navbar from "./Components/Navbar";
 import AllTopics from "./Pages/AllTopics";
+import AllUsers from "./Pages/AllUsers";
 import ArticleById from "./Pages/ArticleById";
 import ArticleByTopic from "./Pages/ArticleByTopic";
 import Home from "./Pages/Home";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home/:topic" element={<ArticleByTopic />} />
         <Route path="/articles/:article_id" element={<ArticleById />} />
         <Route path="/topics" element={<AllTopics />} />
+        <Route path="/users" element={<AllUsers />} />
       </Routes>
     </div>
   );

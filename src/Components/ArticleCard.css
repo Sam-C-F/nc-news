@@ -10,3 +10,17 @@
   margin: 0.5vw;
   background: #9db5b2;
 }
+
+.single__article:link {
+  color: #3b413c;
+  text-decoration: none;
+}
+
+.single__article:visited {
+  color: #2a2d2a;
+  text-decoration: none;
+}
+
+.single__article:hover {
+  color: #602dad;
+}

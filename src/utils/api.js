@@ -22,8 +22,10 @@ export const getArticleById = async (article_id) => {
   return data;
 };
 
-export const getCommentsForArticle = async (article_id) => {
-  const { data } = await newsApi.get(`/articles/${article_id}/comments`);
+export const getCommentsForArticle = async (article_id, limit, p) => {
+  const { data } = await newsApi.get(`/articles/${article_id}/comments`, {
+    params: { limit, p },
+  });
   return data;
 };
 

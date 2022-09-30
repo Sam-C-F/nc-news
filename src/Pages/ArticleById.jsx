@@ -37,7 +37,7 @@ export default function ArticleById() {
 
   useEffect(() => {
     setIsLoading(true);
-    getCommentsForArticle(article_id)
+    getCommentsForArticle(article_id, 50)
       .then(({ comments }) => {
         const commentsToRender = [...comments].map((comment) => {
           return {
@@ -66,7 +66,7 @@ export default function ArticleById() {
     <h1>{isError}</h1>
   ) : (
     <main className="main">
-      <div className="single__article">
+      <div className="article__by__id">
         <section className="article__header">
           <h2>{article.title}</h2>
           <p>{article.created_at}</p>

@@ -13,7 +13,7 @@ export default function ArticleByTopic() {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic, sortBy, orderBy).then(({ articles }) => {
+    getArticles(topic, sortBy, orderBy, 500).then(({ articles }) => {
       setArticles(articles);
       setIsLoading(false);
     });

@@ -14,7 +14,7 @@ export default function AddComment({ setComments, article_id }) {
   if (!loggedInUser.username) {
     return <p>You must be logged in to leave a comment</p>;
   }
-  console.log(newComment);
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);

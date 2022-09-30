@@ -47,6 +47,11 @@ export const getTopics = async () => {
   return data;
 };
 
+export const postTopic = async (reqBody) => {
+  const { data } = await newsApi.post("/topics", reqBody);
+  return data;
+};
+
 export const getUsers = async () => {
   const { data } = await newsApi.get(`/users`);
   return data;

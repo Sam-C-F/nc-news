@@ -49,3 +49,8 @@ export const getUsers = async () => {
   const { data } = await newsApi.get(`/users`);
   return data;
 };
+
+export const deleteComment = async (comment_id) => {
+  const { data } = await newsApi.delete(`/comments/${comment_id}`);
+  return data;
+};

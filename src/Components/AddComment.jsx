@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/User";
 import { postCommentsForArticle } from "../utils/api";
 
 export default function AddComment({ setComments, article_id }) {
-  const [newComment, setNewComment] = useState({ username: "", body: "" });
+  const { loggedInUser } = useContext(UserContext);
+  const [newComment, setNewComment] = useState({
+    username: "",
+    body: "",
+  });
   const [isError, setIsError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  if (!loggedInUser) {
+    return <p>You must be logged in to leave a comment</p>;
+  }
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +23,7 @@ export default function AddComment({ setComments, article_id }) {
         setComments((currentComments) => {
           return [comment, ...currentComments];
         });
-        setNewComment({ username: "", body: "" });
+        setNewComment({ username: loggedInUser.username, body: "" });
         setIsLoading(false);
       })
       .catch((err) => {
@@ -23,7 +32,7 @@ export default function AddComment({ setComments, article_id }) {
         setIsError(err.response.data.msg);
         setTimeout(() => {
           setIsError("");
-          setNewComment({ username: "", body: "" });
+          setNewComment({ username: loggedInUser.username, body: "" });
         }, 1000);
       });
   };
@@ -44,22 +53,10 @@ export default function AddComment({ setComments, article_id }) {
     <h1>{isError}</h1>
   ) : (
     <form onSubmit={(e) => handleOnSubmit(e)}>
-      <label htmlFor="username">Username:</label>
-      <input
-        id="username"
-        type="text"
-        placeholder="username..."
-        value={newComment.username}
-        onChange={(e) => {
-          handleOnChange(e);
-        }}
-        required
-      />{" "}
-      <br />
-      <label htmlFor="body">Comment:</label>
+      <label htmlFor="body"></label>
       <textarea
         id="body"
-        cols="30"
+        cols="40"
         rows="10"
         placeholder="Leave a comment here"
         value={newComment.body}

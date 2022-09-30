@@ -17,6 +17,11 @@ export const getArticles = async (topic, sort_by, order_by, limit, p) => {
   return data;
 };
 
+export const postArticle = async (reqBody) => {
+  const { data } = await newsApi.post("/articles", reqBody);
+  return data;
+};
+
 export const getArticleById = async (article_id) => {
   const { data } = await newsApi.get(`/articles/${article_id}`);
   return data;

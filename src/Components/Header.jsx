@@ -17,7 +17,11 @@ export default function Header() {
       <p>{loggedInUser.username}</p>
       <button
         onClick={() => {
-          setLoggedInUser(null);
+          setLoggedInUser({
+            username: "",
+            name: "",
+            avatar_url: "",
+          });
         }}
       >
         Log Out

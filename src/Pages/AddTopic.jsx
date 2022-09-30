@@ -21,7 +21,7 @@ export default function AddTopic() {
           description: "",
         });
         setIsLoading(false);
-        navigate("/topics");
+        navigate("/articles/add");
       })
       .catch((err) => {
         console.log(err);

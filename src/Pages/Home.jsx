@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import ArticleCard from "../Components/ArticleCard";
 import { getArticles } from "../utils/api";
@@ -84,6 +85,9 @@ export default function Home() {
         <option value="ASC">Ascending</option>
       </select>
       <ul className="all__articles">
+        <Link to="/articles/add" className="link_class">
+          <p className="add__article">Add New article</p>
+        </Link>
         {articles.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;
         })}

@@ -16,17 +16,15 @@ function App() {
         <Header />
         <Navbar />
       </header>
-      <body>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/home/:topic" element={<ArticleByTopic />} />
-          <Route path="/articles/:article_id" element={<ArticleById />} />
-          <Route path="/topics" element={<AllTopics />} />
-          <Route path="/users" element={<AllUsers />} />
-          <Route path="/*" element={<Display404 />} />
-        </Routes>
-      </body>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/home/:topic" element={<ArticleByTopic />} />
+        <Route path="/articles/:article_id" element={<ArticleById />} />
+        <Route path="/topics" element={<AllTopics />} />
+        <Route path="/users" element={<AllUsers />} />
+        <Route path="/*" element={<Display404 />} />
+      </Routes>
     </div>
   );
 }

@@ -7,7 +7,6 @@ export default function CommentCard({ comment }) {
   const { loggedInUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
-  const [isErr, setIsErr] = useState("");
 
   const handleOnClick = () => {
     setIsLoading(true);
@@ -19,7 +18,6 @@ export default function CommentCard({ comment }) {
       .catch((err) => {
         setIsLoading(false);
         setIsDeleted(false);
-        setIsErr(<p>Something went wrong!</p>);
       });
   };
 
@@ -31,9 +29,7 @@ export default function CommentCard({ comment }) {
     return <p>Deleted</p>;
   }
 
-  return isErr ? (
-    isErr
-  ) : comment.author === loggedInUser.username ? (
+  return comment.author === loggedInUser.username ? (
     <li className="single__comment">
       <p>{comment.body}</p>
       <p>

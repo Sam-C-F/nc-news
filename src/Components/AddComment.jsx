@@ -5,16 +5,16 @@ import { postCommentsForArticle } from "../utils/api";
 export default function AddComment({ setComments, article_id }) {
   const { loggedInUser } = useContext(UserContext);
   const [newComment, setNewComment] = useState({
-    username: "",
+    username: loggedInUser.username,
     body: "",
   });
   const [isError, setIsError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  if (!loggedInUser) {
+  if (!loggedInUser.username) {
     return <p>You must be logged in to leave a comment</p>;
   }
-
+  console.log(newComment);
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -32,7 +32,7 @@ export default function AddComment({ setComments, article_id }) {
         setIsError(err.response.data.msg);
         setTimeout(() => {
           setIsError("");
-          setNewComment({ username: loggedInUser.username, body: "" });
+          setNewComment({ username: "", body: "" });
         }, 1000);
       });
   };

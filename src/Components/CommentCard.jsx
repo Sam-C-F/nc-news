@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../contexts/User";
 import { deleteComment } from "../utils/api";
 import "./CommentCard.css";
+import CommentVotes from "./CommentVotes";
 
 export default function CommentCard({ comment }) {
   const { loggedInUser } = useContext(UserContext);
@@ -32,9 +33,11 @@ export default function CommentCard({ comment }) {
   return comment.author === loggedInUser.username ? (
     <li className="single__comment">
       <p>{comment.body}</p>
-      <p>
-        ❤{comment.votes}❤&nbsp; &nbsp; {comment.created_at} &nbsp; &nbsp;
+      <section>
+        {comment.created_at} &nbsp; &nbsp;
         {comment.author}&nbsp; &nbsp;
+        <br />
+        {<CommentVotes comment={comment} />}
         <button
           onClick={() => {
             handleOnClick();
@@ -42,16 +45,18 @@ export default function CommentCard({ comment }) {
         >
           Delete
         </button>
-      </p>
+      </section>
       <hr />
     </li>
   ) : (
     <li className="single__comment">
       <p>{comment.body}</p>
-      <p>
-        ❤{comment.votes}❤&nbsp; &nbsp; {comment.created_at} &nbsp; &nbsp;
+      <section>
+        {comment.created_at} &nbsp; &nbsp;
         {comment.author}&nbsp; &nbsp;
-      </p>
+        <br />
+        {<CommentVotes comment={comment} />}
+      </section>
       <hr />
     </li>
   );

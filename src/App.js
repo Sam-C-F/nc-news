@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
 import Navbar from "./Components/Navbar";
+import AddTopic from "./Pages/AddTopic";
 import AllTopics from "./Pages/AllTopics";
 import AllUsers from "./Pages/AllUsers";
 import ArticleById from "./Pages/ArticleById";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/articles/:article_id" element={<ArticleById />} />
         <Route path="/topics" element={<AllTopics />} />
         <Route path="/users" element={<AllUsers />} />
+        <Route path="/topics/add" element={<AddTopic />} />
         <Route path="/*" element={<Display404 />} />
       </Routes>
     </div>

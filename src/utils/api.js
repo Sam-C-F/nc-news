@@ -4,14 +4,14 @@ const newsApi = axios.create({
   baseURL: `https://back-end-portfolio-project.herokuapp.com/api`,
 });
 
-export const getArticles = async (topic, sort_by, order_by, limit, page) => {
+export const getArticles = async (topic, sort_by, order_by, limit, p) => {
   const { data } = await newsApi.get(`/articles`, {
     params: {
       topic,
       sort_by,
       order_by,
       limit,
-      page,
+      p,
     },
   });
   return data;

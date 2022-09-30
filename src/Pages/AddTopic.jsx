@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/User";
 import { postTopic } from "../utils/api";
 
 export default function AddTopic() {
+  const { loggedInUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [newTopic, setNewTopic] = useState({
     slug: "",
@@ -10,6 +12,10 @@ export default function AddTopic() {
   });
   const [isError, setIsError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  if (!loggedInUser.username) {
+    return <p>You must be logged in to add a new article</p>;
+  }
 
   const handleOnSubmit = (e) => {
     e.preventDefault();

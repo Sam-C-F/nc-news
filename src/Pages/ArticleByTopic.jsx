@@ -8,15 +8,21 @@ export default function ArticleByTopic() {
   const [isloading, setIsLoading] = useState(true);
   const [sortBy, setSortBy] = useState("created_at");
   const [orderBy, setOrderBy] = useState("DESC");
+  const [isError, setIsError] = useState("");
 
   const { topic } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(topic, sortBy, orderBy, 500).then(({ articles }) => {
-      setArticles(articles);
-      setIsLoading(false);
-    });
+    getArticles(topic, sortBy, orderBy, 500)
+      .then(({ articles }) => {
+        setArticles(articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(<p>This page does not exist, please try again!</p>);
+        setIsLoading(false);
+      });
   }, [topic, sortBy, orderBy]);
 
   if (isloading) {
@@ -31,7 +37,9 @@ export default function ArticleByTopic() {
     setOrderBy(e.target.value);
   };
 
-  return (
+  return isError ? (
+    isError
+  ) : (
     <section>
       <label htmlFor="sort_by">Sort By: </label>
       <select

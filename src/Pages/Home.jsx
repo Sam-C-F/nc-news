@@ -11,14 +11,20 @@ export default function Home() {
   const [totalArticles, setTotalArticles] = useState(0);
   const [limit, setLimit] = useState(10);
   const [p, setP] = useState(1);
+  const [isError, setIsError] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(undefined, sortBy, orderBy, limit, p).then((data) => {
-      setTotalArticles(data.total_count);
-      setArticles(data.articles);
-      setIsLoading(false);
-    });
+    getArticles(undefined, sortBy, orderBy, limit, p)
+      .then((data) => {
+        setTotalArticles(data.total_count);
+        setArticles(data.articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsError(<p>This page does not exist, please try again!</p>);
+        setIsLoading(false);
+      });
   }, [sortBy, orderBy, limit, p]);
 
   if (isloading) {
@@ -47,7 +53,9 @@ export default function Home() {
     pageArray.push(i);
   }
 
-  return (
+  return isError ? (
+    isError
+  ) : (
     <section>
       <label htmlFor="sort_by">Sort By: </label>
       <select

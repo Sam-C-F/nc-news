@@ -58,35 +58,38 @@ export default function AddTopic() {
   return isError ? (
     <h1>{isError}</h1>
   ) : (
-    <form onSubmit={(e) => handleOnSubmit(e)}>
-      <br />
-      <label htmlFor="slug">Slug: </label>
-      <input
-        type="text"
-        id="slug"
-        placeholder="Slug..."
-        value={newTopic.slug}
-        onChange={(e) => {
-          handleOnChange(e);
-        }}
-        required
-      />{" "}
-      <br />
-      <br />
-      <label htmlFor="description"></label>
-      <textarea
-        id="description"
-        cols="40"
-        rows="10"
-        placeholder="Enter the description here"
-        value={newTopic.description}
-        onChange={(e) => {
-          handleOnChange(e);
-        }}
-        required
-      ></textarea>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <section>
+      <h2>Add a new topic...</h2>
+      <form onSubmit={(e) => handleOnSubmit(e)}>
+        <br />
+        <label htmlFor="slug">Slug: </label>
+        <input
+          type="text"
+          id="slug"
+          placeholder="Slug..."
+          value={newTopic.slug}
+          onChange={(e) => {
+            handleOnChange(e);
+          }}
+          required
+        />{" "}
+        <br />
+        <br />
+        <label htmlFor="description"></label>
+        <textarea
+          id="description"
+          cols="40"
+          rows="10"
+          placeholder="Enter the description here"
+          value={newTopic.description}
+          onChange={(e) => {
+            handleOnChange(e);
+          }}
+          required
+        ></textarea>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </section>
   );
 }

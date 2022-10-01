@@ -13,7 +13,8 @@ export default function ArticleById() {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState("");
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [limit, setLimit] = useState(10);
+  const [p, setP] = useState(1);
 
   const { article_id } = useParams();
 
@@ -40,7 +41,7 @@ export default function ArticleById() {
 
   useEffect(() => {
     setIsLoading(true);
-    getCommentsForArticle(article_id, 50)
+    getCommentsForArticle(article_id, limit, p)
       .then(({ comments }) => {
         const commentsToRender = [...comments].map((comment) => {
           return {
@@ -59,7 +60,21 @@ export default function ArticleById() {
         setIsError(err.response.data.msg);
         setIsLoading(false);
       });
-  }, [article_id]);
+  }, [article_id, limit, p]);
+
+  const handleLimitOnChange = (e) => {
+    setLimit(e.target.value);
+  };
+
+  const handlePageOnChange = (e) => {
+    setP(e.target.value);
+  };
+
+  const commentArray = [];
+  const numberOfComments = Math.ceil(article.comment_count / limit);
+  for (let i = 0; i < numberOfComments; i++) {
+    commentArray.push(i);
+  }
 
   if (isLoading) {
     return <p>Loading</p>;
@@ -95,6 +110,42 @@ export default function ArticleById() {
           })}
         </ul>
       </div>
+      <hr />
+      <p>
+        Total Comments: {article.comment_count}
+        &nbsp; &nbsp; &nbsp;
+        <label htmlFor="limit">Limit: </label>
+        <select
+          name="limit"
+          id="limit"
+          value={limit}
+          onChange={(e) => {
+            handleLimitOnChange(e);
+          }}
+        >
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+        &nbsp;
+        <label htmlFor="p">Page: </label>
+        <select
+          name="p"
+          id="p"
+          value={p}
+          onChange={(e) => {
+            handlePageOnChange(e);
+          }}
+        >
+          {commentArray.map((p) => {
+            return (
+              <option key={p + 1} value={p + 1}>
+                {p + 1}
+              </option>
+            );
+          })}
+        </select>
+      </p>
     </main>
   );
 }

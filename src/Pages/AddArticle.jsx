@@ -74,11 +74,12 @@ export default function AddArticle() {
     <h1>{isError}</h1>
   ) : (
     <section>
+      <h2>Add a new article...</h2>
       <p>Either</p>
       <Link to="/topics/add" className="add__new__topic">
-        <p>Add New Topic</p>
+        Add New Topic
       </Link>
-      <p className="add__new__topic">or</p>
+      <p>or</p>
       <form onSubmit={(e) => handleOnSubmit(e)}>
         <label htmlFor="topic">Topic: </label>
         <select
@@ -121,7 +122,7 @@ export default function AddArticle() {
         <textarea
           id="body"
           cols="40"
-          rows="10"
+          rows="15"
           placeholder="Write your article here"
           value={newArticle.body}
           onChange={(e) => {
@@ -132,6 +133,8 @@ export default function AddArticle() {
         <br />
         <button type="submit">Submit</button>
       </form>
+      <br />
+      <br />
     </section>
   );
 }

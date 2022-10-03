@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
-import "./UserCard.css";
 
 export default function UserCard({ user }) {
   const { setLoggedInUser } = useContext(UserContext);

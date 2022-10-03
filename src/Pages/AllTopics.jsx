@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TopicCard from "../Components/TopicCard";
 import { getTopics } from "../utils/api";
-import "./AllTopics.css";
 
 export default function AllTopics() {
   const [topics, setTopics] = useState({});

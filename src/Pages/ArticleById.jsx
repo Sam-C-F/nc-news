@@ -4,9 +4,7 @@ import AddComment from "../Components/AddComment";
 import ArticleVotes from "../Components/ArticleVotes";
 import CommentCard from "../Components/CommentCard";
 import DeleteArticle from "../Components/DeleteArticle";
-
 import { getArticleById, getCommentsForArticle } from "../utils/api";
-import "./ArticleById.css";
 
 export default function ArticleById() {
   const [article, setArticle] = useState({});

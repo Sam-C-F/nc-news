@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./ArticleCard.css";
 
 export default function ArticleCard({ article }) {
   const articleDate = article.created_at

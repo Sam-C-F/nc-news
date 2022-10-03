@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import UserCard from "../Components/UserCard";
 import { getUsers } from "../utils/api";
-import "./AllUsers.css";
 
 export default function AllUsers() {
   const [users, setUsers] = useState([]);

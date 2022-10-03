@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./TopicCard.css";
 
 export default function TopicCard({ topic }) {
   return (

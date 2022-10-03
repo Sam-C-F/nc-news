@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../contexts/User";
 import { deleteComment } from "../utils/api";
-import "./CommentCard.css";
 import CommentVotes from "./CommentVotes";
 
 export default function CommentCard({ comment }) {
